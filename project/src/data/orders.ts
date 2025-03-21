@@ -9,7 +9,7 @@ export const orders: Order[] = [
         id: '1-1-1',
         name: 'vadapav',
         description: 'Crispy pastry filled with spiced potatoes and peas',
-        price: 20,
+        price: 290,
        image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950',
         available: true,
         quantity: 2
