@@ -92,6 +92,16 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
 
       console.log('Registration successful:', response.data);
+
+      const user1 = response.data.data; // because backend sends data: user
+
+setUser({
+  id: user1._id,
+  name: user1.fullname,
+  email: user1.email,
+  role: user1.accountType
+});
+      localStorage.setItem('user', JSON.stringify(user1));
       return response.data;
       
     } catch (error) {
