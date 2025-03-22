@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import axios from "axios";
-import toast from "react-hot-toast";
-import dotenv from "dotenv"
+// import toast from "react-hot-toast";
+
 interface User {
   id: string;
   name: string;
@@ -23,9 +23,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-dotenv.config({
-    path:'../'
-})
+
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(() => {
