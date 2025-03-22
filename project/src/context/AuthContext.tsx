@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import axios from "axios";
 import toast from "react-hot-toast";
+import dotenv from "dotenv"
 interface User {
   id: string;
   name: string;
@@ -21,6 +22,10 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+dotenv.config({
+    path:'../'
+})
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(() => {
@@ -50,7 +55,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         password: password}
        
       await new Promise(resolve => setTimeout(resolve, 1000));
-      const response = await axios.post("https://restaurant-software-36b7.onrender.com/api/v1/user/login", user);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/login`, user);
 
       console.log('login successful:');
      //console.log( response.data.data._id,);
@@ -85,7 +90,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         accountType: role
     };
       await new Promise(resolve => setTimeout(resolve, 1000));
-      const response = await axios.post("https://restaurant-software-36b7.onrender.com/api/v1/user/signup", user);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/signup`, user);
       
 
       console.log('Registration successful:', response.data);
